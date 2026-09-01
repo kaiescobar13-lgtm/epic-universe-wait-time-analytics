@@ -1,37 +1,28 @@
 # Epic Universe Wait Time Analytics & Itinerary Optimization
 
-**Overview**
-This repository houses a comprehensive data science pipeline designed to analyze, visualize, and optimize theme park attraction wait times using operational logs collected from Epic Universe Opening Week (May 22–29, 2025). The framework dynamically processes multi-sheet Excel workbooks, cleans operational anomalies, and generates high-resolution visual dashboards for strategic park navigation.
+*I built this pipeline to help me prepare for my trip to Universal's Epic Universe. I had been tracking the construction of the park over the course of the year, and was eagerly anticipating the opening. I wanted to make sure that I would be able to do every ride I was looking forward to, so I built this project*
 
-**Repository Artifacts & Visualizations**
+**The Story**
+I wanted to get an idea of how traffic moved throughout the park, so I logged operational wait times throughout opening week. I turned those raw logs into a Python pipeline to find when the park has lulls, dodge peak wait times, and engineer a touring plan for my own vacation. I also wanted to learn general information about the park, so I tracked downtimes and weather delays as well as overall minutes waited. 
 
-* **`daily_congestion_trend.png`**: Displays daily park-wide congestion shifts and peak volume patterns across the analyzed week.
-* **`hourly_wait_heatmap.jpg`**: Comprehensive heatmap illustrating average hourly wait times by attraction across standard operating hours (9 AM – 10 PM), with closed-ride anomalies filtered out.
+**Artifacts & Visual Dashboards**
 
+* **`daily_congestion_trend.png`**: Park-wide congestion shifts and peak volume patterns across opening week.
+* **`hourly_wait_heatmap.jpg`**: Comprehensive heatmap of average hourly wait times across standard operating hours (9 AM – 10 PM), with ride closures filtered out.
+* **`hourly_wait_heatmap_may27_29.jpg`**: Focused heatmap targeting late-week congestion spikes.
+* **`ride_reliability_ranked.png`**: Statistical ranking evaluating operational consistency, variance, and downtime frequency.
+* **`optimized_breaks_itinerary.png`**: The final data-driven touring plan mapping out attraction sequencing and strategic rest intervals.
 
-* **`hourly_wait_heatmap_may27_29.jpg`**: Focused hourly heatmap highlighting late-week peak congestion windows from May 27 to May 29.
-* **`ride_reliability_ranked.png`**: Statistical ranking of attractions evaluating operational consistency, variance, and downtime frequency.
-* **`optimized_breaks_itinerary.png`**: Data-driven touring plan mapping out optimal attraction sequencing and strategic rest intervals to minimize queue exposure.
+**Under the Hood (Technical Architecture)**
 
-**Data Pipeline & Technical Architecture**
-
-* **Dynamic Sheet Ingestion**: Automatically loops through daily numerical sheet tabs in `Epic Universe Wait Times 5_22-5_29.xlsx`, anchoring shifted header rows dynamically via string matching (`"9 A.M."`).
-
-
-* **Data Sanitization**: Drops generalized weather rows and replaces `0`-minute wait records (representing ride closures or logging gaps) with `NaN` to protect hourly mean calculations from downward skew.
-
-
-* **Long-Format Transformation**: Melts wide-format daily time series into a normalized pandas dataframe (`Ride Names`, `Date`, `Hour`, `WaitTime`) for advanced aggregation and pivoting.
-
-
-* **High-Resolution Styling**: Utilizes `seaborn` and `matplotlib` with enforced `DejaVu Sans` typography and a high-density export configuration (`figure.dpi = 300`) for publication-grade chart rendering.
-
-
+* **Dynamic Ingestion**: Automatically loops through multi-sheet Excel workbooks (`Epic Universe Wait Times 5_22-5_29.xlsx`), anchoring shifted header rows via string matching (`"9 A.M."`).
+* **Data Sanitization**: Drops weather rows and replaces `0`-minute wait records (closures or logging gaps) with `NaN` to prevent skewing hourly means.
+* **Long-Format Transformation**: Melts wide-format daily time series into a normalized pandas dataframe (`Ride Names`, `Date`, `Hour`, `WaitTime`) for advanced pivoting.
+* **Publication-Grade Styling**: Renders high-resolution charts (`figure.dpi = 300`) using `seaborn` and `matplotlib` with enforced typography.
 
 **Setup & Usage**
 
-1. Ensure Python 3.8+ is installed alongside required packages: `pip install pandas matplotlib seaborn openpyxl`.
-2. Place the source dataset (`Epic Universe Wait Times 5_22-5_29.xlsx`) into the working directory.
-
-
-3. Run the processing script to execute data munging, handle aggregations, and export updated visual artifacts.
+1. Clone the repository and ensure Python 3.8+ is installed.
+2. Install dependencies: `pip install pandas matplotlib seaborn openpyxl`
+3. Drop your source dataset (`Epic Universe Wait Times 5_22-5_29.xlsx`) into the working directory.
+4. Run the notebook/script to execute the pipeline and generate the visualizations.
