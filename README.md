@@ -1,8 +1,7 @@
 # Epic Universe Wait Time Analytics & Itinerary Optimization
 
-I built this pipeline to help me prepare for my trip to Universal's Epic Universe. I had been tracking the construction of the park over the course of the year, and was eagerly anticipating the opening. I wanted to make sure that I would be able to do every ride I was looking forward to, so I built this project
+I built this pipeline to help me prepare for my trip to Universal's Epic Universe. I had been tracking the construction of the park over the course of the year, and was eagerly anticipating the opening. I wanted to make sure that I would be able to do every ride I was looking forward to, so I built this project.
 
-**The Story**
 I wanted to get an idea of how traffic moved throughout the park, so I logged operational wait times throughout opening week. I turned those raw logs into a Python pipeline to find when the park has lulls, dodge peak wait times, and engineer a touring plan for my own vacation. I also wanted to learn general information about the park, so I tracked downtimes and weather delays as well as overall minutes waited. 
 
 **Artifacts & Visual Dashboards**
